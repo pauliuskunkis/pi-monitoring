@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s       # how often to fetch each target's /metrics page
+  evaluation_interval: 15s   # how often to check alert rules (used later)
+
+scrape_configs:
+  - job_name: prometheus     # Prometheus monitors itself
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: node           # the node_exporter we just set up
+    static_configs:
+      - targets: ["localhost:9100"]
