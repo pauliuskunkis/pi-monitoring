@@ -1,0 +1,11 @@
+groups:
+  - name: node
+    rules:
+      - alert: NodeExporterDown
+        expr: up{job="node"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "node_exporter on {{ $labels.instance }} is down"
+          description: "Prometheus has failed to scrape {{ $labels.instance }} for over 1 minute."
